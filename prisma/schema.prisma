@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model UserEntity {
+  id               String             @id @default(uuid())
+  hardwarePubKey   String             @unique
+  encryptedProfile String
+  cnsBaselineScore Float              @default(100)
+  workouts         WorkoutSession[]
+  supplements      SupplementLog[]
+  recoverySessions ThermalRecovery[]
+}
+
+model WorkoutSession {
+  id               String        @id @default(uuid())
+  userId           String
+  timestamp        DateTime      @default(now())
+  splitType        String
+  cnsDrainEstimate Float
+  isCompleted      Boolean       @default(false)
+  exercises        ExerciseLog[]
+  user             UserEntity    @relation(fields: [userId], references: [id])
+}
+
+model ExerciseLog {
+  id               String         @id @default(uuid())
+  sessionId        String
+  movementCode     String
+  sets             Int
+  reps             Int
+  rpe              Float
+  timeUnderTension Int
+  volumeLoad       Float
+  session          WorkoutSession @relation(fields: [sessionId], references: [id])
+}
+
+model SupplementLog {
+  id             String     @id @default(uuid())
+  userId         String
+  compoundName   String
+  dosageMg       Float
+  ingestionTime  DateTime
+  halfLifeHours  Float
+  peakBloodLevel DateTime?
+  user           UserEntity @relation(fields: [userId], references: [id])
+}
+
+model ThermalRecovery {
+  id                String     @id @default(uuid())
+  userId            String
+  amenityType       String
+  bookedStartTime   DateTime
+  durationMinutes   Int
+  cnsRestorationVal Float
+  user              UserEntity @relation(fields: [userId], references: [id])
+}
+
+model PhilosophyGate {
+  id             String @id @default(uuid())
+  author         String
+  quoteText      String
+  intensityLevel String
+}
