@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="theme-color" content="#050505"/>
+<title>ALGIZ</title>
+<link rel="icon" href="./rune.svg"/>
+<style>
+html,body{margin:0;background:#050505;color:#E0E0E0;font-family:ui-sans-serif,system-ui,sans-serif;min-height:100%}
+#gate,#app{min-height:100dvh;padding:24px}
+#app{display:none}
+h1{margin:0 0 8px;color:#D32F2F;letter-spacing:.4em;font-size:28px;text-align:center}
+.rune{display:block;width:72px;height:100px;margin:0 auto 28px}
+.quote{border-left:4px solid #D32F2F;padding:0 0 0 16px;margin:0 0 28px}
+.quote p{font-size:20px;font-style:italic;line-height:1.4}
+.quote span{color:#888;letter-spacing:.16em;text-transform:uppercase;font-size:12px}
+label{display:flex;gap:12px;align-items:center;justify-content:center;margin:0 0 24px}
+button{width:100%;border:0;background:#D32F2F;color:#fff;padding:16px;font-weight:800;letter-spacing:.2em}
+button:disabled{background:#222;color:#666}
+.row{display:flex;justify-content:space-between;border-bottom:1px solid #222;padding:12px 0}
+.score{font-size:64px;color:#D32F2F;text-align:center;margin:8px 0}
+input,select{background:#111;color:#fff;border:1px solid #333;padding:10px;width:100%;margin:0 0 10px}
+.muted{color:#888;font-size:13px}
+nav{display:flex;gap:8px;margin:0 0 16px}
+nav button{flex:1;letter-spacing:.08em;font-size:12px}
+.panel{display:none}.panel.on{display:block}
+</style>
+</head>
+<body>
+<section id="gate">
+  <img class="rune" src="./rune.svg" alt="Algiz"/>
+  <h1>ALGIZ</h1>
+  <div class="quote">
+    <p id="q">To achieve the extraordinary, you must endure the unreasonable.</p>
+    <span id="qa">Mike Mentzer</span>
+  </div>
+  <label><input id="ok" type="checkbox"/> I read it. I understand.</label>
+  <button id="enter" type="button" disabled>ENTER THE CRUCIBLE</button>
+  <p class="muted" style="text-align:center;margin-top:24px">Not a medical device. Training heuristic only.</p>
+</section>
+<section id="app">
+  <img class="rune" src="./rune.svg" alt="" width="48" height="64" style="width:48px;height:64px;margin-bottom:8px"/>
+  <h1>ALGIZ</h1>
+  <p class="muted" style="text-align:center">CNS master · muscle workers</p>
+  <div class="score" id="score">100</div>
+  <p class="muted" id="swap" style="text-align:center;margin-bottom:20px"></p>
+  <nav>
+    <button type="button" data-p="lift">Lift</button>
+    <button type="button" data-p="supp">Supp</button>
+    <button type="button" data-p="heat">Heat</button>
+  </nav>
+  <div class="panel on" id="lift">
+    <input id="move" placeholder="Movement code e.g. SQUAT_BB"/>
+    <input id="sets" type="number" placeholder="Sets"/>
+    <input id="reps" type="number" placeholder="Reps"/>
+    <input id="rpe" type="number" step="0.5" placeholder="RPE"/>
+    <input id="kg" type="number" placeholder="Load kg"/>
+    <button type="button" id="logLift">LOG SET</button>
+    <div id="lifts"></div>
+  </div>
+  <div class="panel" id="supp">
+    <input id="comp" placeholder="Compound e.g. caffeine"/>
+    <input id="mg" type="number" placeholder="Dose mg"/>
+    <input id="hl" type="number" step="0.1" placeholder="Half-life hours"/>
+    <button type="button" id="logSupp">LOG DOSE</button>
+    <div id="supps"></div>
+  </div>
+  <div class="panel" id="heat">
+    <select id="amenity"><option>SAUNA</option><option>STEAM_ROOM</option><option>POOL</option></select>
+    <input id="mins" type="number" placeholder="Minutes"/>
+    <button type="button" id="logHeat">LOG HEAT</button>
+    <div id="heats"></div>
+  </div>
+</section>
+<script src="./cns.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>
