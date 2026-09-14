@@ -2,30 +2,29 @@
 
 Separate product from [BudVia](https://github.com/tahsinsakin/belvia).
 
-**Problem:** Whoop / Hevy / RP treat the body as one battery.  
-**Bet:** isolate **CNS load** (master) from **local muscle load** (workers). If HRV / sleep / RPE say the master node is down, swap axial compounds for machine variations. Keep local volume.
+CNS is the master node. Muscle groups are workers. If readiness drops below 70, axial compounds swap to machine variants. Local volume stays.
 
-Not a medical device. Scores are training heuristics.
+**Not a medical device.**
 
-## Live (after Pages on)
+## Open
 
-https://tahsinsakin.github.io/algiz/
+Repo: https://github.com/tahsinsakin/algiz  
+Pages (after Actions / Pages is allowed): https://tahsinsakin.github.io/algiz/
 
-## v0 (this repo)
+## Run locally
 
-- On-device PWA. No account.
-- Philosophical gate on first open.
-- Lift log (sets / reps / RPE / TUT).
-- Supplement log (dose + half-life curve).
-- Thermal recovery log (pool / sauna / steam) — **not** BudVia booking copied in.
-- Readiness = `100 - cnsDrain + suppEfficacy(t) + thermalRestore`.
-- Movement swap table when readiness < 70.
+```
+npx --yes serve .
+node services/readiness.mjs
+```
 
-## What is not shipped yet
+## v0.1
 
-- Secure Enclave / StrongBox. Web Crypto AES-GCM + key in IndexedDB is the PWA stand-in.
-- Wearable HRV ingest.
-- Postgres / Prisma runtime. Schema is the target model.
-- SAST/DAST pipeline.
+- Philosophical gate
+- Lift / supp / heat logs
+- AES-256-GCM device vault (`vault.js`)
+- Readiness formula + swap table
+- Prisma target schema
+- `POST /readiness` local service
 
 Publisher: Tahsin Sakin · tahcem17@gmail.com
