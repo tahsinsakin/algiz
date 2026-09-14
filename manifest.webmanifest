@@ -1,0 +1,9 @@
+{
+  "name": "ALGIZ",
+  "short_name": "ALGIZ",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "icons": [{"src": "./rune.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}]
+}

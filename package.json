@@ -1,0 +1,8 @@
+{
+  "name": "algiz",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "readiness": "node services/readiness.mjs"
+  }
+}
